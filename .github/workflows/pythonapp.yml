@@ -24,3 +24,20 @@ jobs:
 
     - name: Run test
       run: make test
+
+  build-container:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Logging to Github registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: build and push cli app
+      uses: docker/build-push-action@v2
+      with:
+        context: ./
+        tags: ghcr.io/hfjohann/nba-guessr:latest
+        push: true
