@@ -6,6 +6,7 @@ lint:
 	pylint --disable=R,C,E1120 cli.py &&\
 		pylint --disable=R,C mlib.py &&\
 		pylint --disable=R,C,W0613 test_cli.py
+	docker run --rm -i hadolint/hadolint < Dockerfile
 
 format:
 	black *.py
