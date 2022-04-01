@@ -7,18 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-python@v1
-    
-    - name: configure
-      run: ./configure
-      
+          
     - name: Install dependencies
       run: make install
-      
+
     - name: Run lint
       run: make lint
-      
+
     - name: Run format
       run: make format
-      
+
     - name: Run test
       run: make test
